@@ -1,6 +1,6 @@
 # PASCAL VOC 2007 Formatter
 
-A tool to download and format PASCAL VOC 2007 dataset. It outputs a .h5 file that contains the following:
+A tool to download and format PASCAL VOC2007 dataset. It outputs a .h5 file that contains the following:
 
 * data_types: 'train', 'val' and 'test'
 * cats: names of the 20 categories
