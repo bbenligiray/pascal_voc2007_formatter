@@ -2,3 +2,4 @@ VOCdevkit/
 
 *.tar
 *.h5
+*.pyc
