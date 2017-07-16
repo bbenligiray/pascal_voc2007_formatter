@@ -84,7 +84,6 @@ def main():
 
 	# show random images to test
 	f = h5py.File('pascal_voc2007.h5', 'r')
-	import pdb; pdb.set_trace()
 	cats_h = f['cats']
 	data_types_h = f['data_types']
 	while True:
