@@ -77,6 +77,25 @@ def main():
 				cat_id = cats.index(obj.text)
 				image_labels[cat_id] = 1
 			label_h[image_ind] = image_labels
+
+	# create a new dataset composed of train and val
+	no_trainval = no_images[0] + no_images[1]
+	image_h = f.create_dataset('trainval_images', (no_trainval,), dtype=dt_uint8)
+	name_h = f.create_dataset('trainval_image_names', (no_trainval,), dtype=dt_str)
+	shape_h = f.create_dataset('trainval_image_shapes', (no_trainval, 3), dtype=np.int)
+	label_h = f.create_dataset('trainval_labels', (no_trainval, len(cats)), dtype=np.int)
+	for ind in range(no_trainval):
+		if ind < no_images[0]:
+			image_h[ind] = f['train_images'][ind]
+			name_h[ind] = f['train_image_names'][ind]
+			shape_h[ind] = f['train_image_shapes'][ind]
+			label_h[ind] = f['train_labels'][ind]
+		else:
+			image_h[ind] = f['val_images'][ind - no_images[0]]
+			name_h[ind] = f['val_image_names'][ind - no_images[0]]
+			shape_h[ind] = f['val_image_shapes'][ind - no_images[0]]
+			label_h[ind] = f['val_labels'][ind - no_images[0]]
+
 	f.close()
 	shutil.rmtree('VOCdevkit')
 
